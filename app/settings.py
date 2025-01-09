@@ -25,8 +25,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "typeCoffe",
     "rest_framework",
+    "typeCoffe",
+    "descriptionCoffe",
 ]
 
 MIDDLEWARE = [
