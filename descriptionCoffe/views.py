@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import generics
+from descriptionCoffe.models import descriptionCoffe
+from descriptionCoffe.serializers import descriptionCoffeSerializers
 
-# Create your views here.
+
+class descriptionCoffeCreateListView(generics.ListCreateAPIView):
+    queryset = descriptionCoffe.objects.all()
+    serializer_class = descriptionCoffeSerializers
+
+class descriptionRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = descriptionCoffe.objects.all()
+    serializer_class = descriptionCoffeSerializers

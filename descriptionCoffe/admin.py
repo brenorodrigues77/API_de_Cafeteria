@@ -1,3 +1,6 @@
 from django.contrib import admin
+from descriptionCoffe.models import descriptionCoffe
 
-# Register your models here.
+@admin.register(descriptionCoffe)
+class descriptionCoffeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'creation_date', 'nationality')
