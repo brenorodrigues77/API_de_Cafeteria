@@ -3,6 +3,7 @@ from django.urls import path
 from typeCoffe.views import typeCoffeCreateListView, typeCoffeRetrieveUpdateDestroyView
 from descriptionCoffe.views import descriptionCoffeCreateListView, descriptionRetrieveUpdateDestroyView
 from companyCoffe.views import companyCoffeCreateListView, companyCoffeRetrieveUpdateDestroyView
+from reviewCoffe.views import reviewCoffeCreateListView, reviewCoffeRetrieveUpdateDestroyView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -15,4 +16,7 @@ urlpatterns = [
 
     path('companycoffe/', companyCoffeCreateListView.as_view(), name='companycoffe-list-create'),
     path('companycoffe/<int:pk>/', companyCoffeRetrieveUpdateDestroyView.as_view(), name='companycoffe-detail'),
+
+    path('reviewcoffe/', reviewCoffeCreateListView.as_view(), name='reviewcoffe-list-create'),
+    path('reviewcoffe/<int:pk>/', reviewCoffeRetrieveUpdateDestroyView.as_view(), name='reviewcoffe-detail'),
 ]

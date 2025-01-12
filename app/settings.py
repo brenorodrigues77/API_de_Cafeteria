@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "typeCoffe",
     "descriptionCoffe",
     "companyCoffe",
+    "reviewCoffe",
 ]
 
 MIDDLEWARE = [
