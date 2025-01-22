@@ -24,3 +24,8 @@ class companyCoffeSerializers(serializers.ModelSerializer):
         if len(value) > 500:
             raise serializers.ValidationError('O campo resumo nao pode ter mais que 500 caracteres.')
         return value
+    
+    def validate_title(self, value):
+        if len(value) > 100:
+            raise serializers.ValidationError('O campo titulo nao pode ter mais que 100 caracteres.')
+        return value
