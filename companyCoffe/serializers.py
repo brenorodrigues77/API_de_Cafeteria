@@ -2,7 +2,7 @@ from django.db.models import Avg
 from rest_framework import serializers
 from companyCoffe.models import companyCoffe
 
-class companyCoffeSerializers(serializers.ModelSerializer):
+class CompanyCoffeSerializers(serializers.ModelSerializer):
     rate = serializers.SerializerMethodField(read_only=True)
 
     class Meta:

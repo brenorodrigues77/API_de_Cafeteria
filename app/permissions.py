@@ -7,7 +7,7 @@ class globalDefaultPermission(permissions.BasePermission):
         view=view,
       )
         if not model_permission:
-            return False  
+            return False
         
         return request.user.has_perm(model_permission)
     def __get_model_permission(self, method, view):
