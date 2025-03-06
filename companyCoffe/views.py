@@ -3,7 +3,7 @@ from rest_framework import generics, views, response
 from companyCoffe.models import companyCoffe
 from reviewCoffe.models import reviewCoffe
 from rest_framework.permissions import IsAuthenticated
-from companyCoffe.serializers import CompanyCoffeSerializers
+from companyCoffe.serializers import CompanyCoffeSerializers, CompanyCoffeListDetailSerializers
 from app.permissions import globalDefaultPermission
 
 # view de lista e criação de novos dados
@@ -12,7 +12,11 @@ from app.permissions import globalDefaultPermission
 class CompanyCoffeCreateListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, globalDefaultPermission,)
     queryset = companyCoffe.objects.all()
-    serializer_class = CompanyCoffeSerializers
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return CompanyCoffeListDetailSerializers
+        return CompanyCoffeSerializers
 
 # view de alteração, atualização e exclusão de dados
 
@@ -20,7 +24,11 @@ class CompanyCoffeCreateListView(generics.ListCreateAPIView):
 class CompanyCoffeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, globalDefaultPermission,)
     queryset = companyCoffe.objects.all()
-    serializer_class = CompanyCoffeSerializers
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return CompanyCoffeListDetailSerializers
+        return CompanyCoffeSerializers
 
 
 class CompanyCoffeStatsView(views.APIView):

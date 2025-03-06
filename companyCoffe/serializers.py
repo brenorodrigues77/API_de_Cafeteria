@@ -1,20 +1,15 @@
 from django.db.models import Avg
 from rest_framework import serializers
 from companyCoffe.models import companyCoffe
+from typeCoffe.serializers import TypeCoffeserializers
+from descriptionCoffe.serializers import DescriptionCoffeSerializers
 
 
 class CompanyCoffeSerializers(serializers.ModelSerializer):
-    rate = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = companyCoffe
         fields = '__all__'
-
-    def get_rate(self, obj):
-        rate = round(obj.review.aggregate(Avg('stars'))['stars__avg'], 1)
-        if rate:
-            return rate
-        return None
 
     def validate_release_date(self, value):
         if value.year < 1950:
@@ -33,3 +28,20 @@ class CompanyCoffeSerializers(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'O campo titulo nao pode ter mais que 100 caracteres.')
         return value
+
+
+class CompanyCoffeListDetailSerializers(serializers.ModelSerializer):
+    descriptioncoffe = DescriptionCoffeSerializers(many=True)
+    typecoffe = TypeCoffeserializers()
+    rate = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = companyCoffe
+        fields = ['title', 'typecoffe', 'release_date',
+                  'descriptioncoffe', 'resume', 'rate']
+
+    def get_rate(self, obj):
+        rate = round(obj.review.aggregate(Avg('stars'))['stars__avg'], 1)
+        if rate:
+            return rate
+        return None
