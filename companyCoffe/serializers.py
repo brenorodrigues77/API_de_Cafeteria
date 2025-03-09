@@ -41,7 +41,7 @@ class CompanyCoffeListDetailSerializers(serializers.ModelSerializer):
                   'descriptioncoffe', 'resume', 'rate']
 
     def get_rate(self, obj):
-        rate = round(obj.review.aggregate(Avg('stars'))['stars__avg'], 1)
+        rate = (obj.review.aggregate(Avg('stars'))['stars__avg'])
         if rate:
-            return rate
+            return round(rate, 1)
         return None
